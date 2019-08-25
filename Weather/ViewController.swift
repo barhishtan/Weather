@@ -88,6 +88,7 @@ extension ViewController:
                                                       for: indexPath) as! WeatherCell
         
         cell.weatherData = weatherData
+        cell.numberOfSection = indexPath.section
         
         return cell
     }

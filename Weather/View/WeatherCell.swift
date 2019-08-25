@@ -11,7 +11,8 @@ import UIKit
 class WeatherCell:
     UICollectionViewCell,
     UICollectionViewDelegate,
-    UICollectionViewDataSource {
+    UICollectionViewDataSource,
+    UICollectionViewDelegateFlowLayout {
     
     // MARK: - IB Outlets
     @IBOutlet var collectionInCell: UICollectionView!
@@ -21,6 +22,7 @@ class WeatherCell:
     
     // MARK: - Public Properties
     var weatherData: [Weather]?
+    var numberOfSection: Int!
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -41,14 +43,24 @@ class WeatherCell:
                         cellForItemAt indexPath: IndexPath)
         -> UICollectionViewCell {
             
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "internalCell", for: indexPath) as! InternalCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "internalCell",
+                                                      for: indexPath) as! InternalCell
         
-                cell.timeOfDayLabel.text = weatherData?.first?.getTimeOfDay()
-                cell.temperatureLabel.text = weatherData?.first?.temp
-                cell.windLabel.text = weatherData?.first?.wind
-                cell.cloudLabel.text = weatherData?.first?.cloud
+            let index = indexPath.row + numberOfTimesOfDay * numberOfSection
+            
+            cell.timeOfDayLabel.text = weatherData?[index].getTimeOfDay()
+            cell.temperatureLabel.text = weatherData?[index].temp
+            cell.windLabel.text =  "Ветер" + " " + (weatherData?[index].wind  ?? " ")
+            cell.cloudLabel.text = weatherData?[index].cloud
             
             return cell
+    }
+    
+    // MARK: -  UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width / 1.5, height: 125)
     }
     
 }
