@@ -10,41 +10,87 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - IB Outlets
+    @IBOutlet var weatherCV: UICollectionView!
+
     // MARK: - Private Properties
-    let weatherUrl = "http://icomms.ru/inf/meteo.php?tid=24"
+    private let weatherUrl = "http://icomms.ru/inf/meteo.php?tid=24"
+    private var weatherData: [Weather]?
+    private let numberOfTimesOfDay = 4
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchWeather()
+        weatherCV.delegate = self
+        weatherCV.dataSource = self
+        fetchWeatherData()
     }
 
     // MARK: - Private Methods
-    private func fetchWeather() {
+ 
+    private func fetchWeatherData() {
+        
         guard let url = URL(string: weatherUrl) else { return }
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            }
-//
-//            if let response = response {
-//                print(response)
-//            }
-            
             guard let data = data else { return }
             do {
-                let weather = try JSONDecoder().decode([Weather].self,
-                                                       from: data)
-                print(weather.first?.getDate() ?? "Something wrong")
-                print(weather.first?.getTimeOfDay() ?? "Something wrong")
+                self.weatherData = try JSONDecoder().decode([Weather].self, from: data)
             } catch let error {
                 print(error)
             }
+            
+            DispatchQueue.main.async {
+                self.weatherCV.reloadData()
+            }
+            
         }.resume()
         
     }
 }
+// MARK: - Collection view data sourse and delegate
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return (weatherData?.count ?? numberOfTimesOfDay)
+                                        / numberOfTimesOfDay
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "weatherHeader", for: indexPath) as! WeatherHeaderView
+        
+        if let weatherDate = weatherData?[indexPath.section *
+                                            numberOfTimesOfDay].getDate() {
+            header.dateLabel.text = weatherDate
+        }
+        
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return numberOfTimesOfDay
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as! WeatherCell
+        
+        let numberOfItem = numberOfTimesOfDay * indexPath.section + indexPath.row
+        
+        if let weather = weatherData?[numberOfItem] {
+            cell.timeOfDayLabel.text = weather.getTimeOfDay()
+            cell.temperatureLabel.text = weather.temp
+            cell.windLabel.text = weather.wind
+            cell.cloudLabel.text = weather.cloud
+        }
+        
+        return cell
+    }
 
+}
