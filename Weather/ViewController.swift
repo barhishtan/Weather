@@ -50,7 +50,9 @@ class ViewController: UIViewController {
     }
 }
 // MARK: - Collection view data sourse and delegate
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ViewController:
+    UICollectionViewDataSource,
+    UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return (weatherData?.count ?? numberOfTimesOfDay)
@@ -59,10 +61,13 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
+                        at indexPath: IndexPath)
+        -> UICollectionReusableView {
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "weatherHeader", for: indexPath) as! WeatherHeaderView
-        
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                    withReuseIdentifier: "weatherHeader",
+                                                    for: indexPath) as! WeatherHeaderView
+            
         if let weatherDate = weatherData?[indexPath.section *
                                             numberOfTimesOfDay].getDate() {
             header.dateLabel.text = weatherDate
@@ -73,22 +78,16 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return numberOfTimesOfDay
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as! WeatherCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell",
+                                                      for: indexPath) as! WeatherCell
         
-        let numberOfItem = numberOfTimesOfDay * indexPath.section + indexPath.row
-        
-        if let weather = weatherData?[numberOfItem] {
-            cell.timeOfDayLabel.text = weather.getTimeOfDay()
-            cell.temperatureLabel.text = weather.temp
-            cell.windLabel.text = weather.wind
-            cell.cloudLabel.text = weather.cloud
-        }
+        cell.weatherData = weatherData
         
         return cell
     }
@@ -98,6 +97,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 // MARK: UICollectionViewDelegateFlowLayout
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width / 1.5, height: 125)
+        return CGSize(width: UIScreen.main.bounds.width, height: 125)
     }
+    
 }
