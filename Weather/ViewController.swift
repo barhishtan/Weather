@@ -92,5 +92,12 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         
         return cell
     }
+    
+}
 
+// MARK: UICollectionViewDelegateFlowLayout
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width / 1.5, height: 125)
+    }
 }
