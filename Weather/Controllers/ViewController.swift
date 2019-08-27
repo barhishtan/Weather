@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class ViewController: UIViewController {
 
     // MARK: - Private Properties
     private let weatherUrl = "http://icomms.ru/inf/meteo.php?tid=24"
-    private var weatherData: [Weather]?
+    private var weatherData: [Weather]? = []
     private let numberOfTimesOfDay = 4
 
     // MARK: - Lifecycle
@@ -24,7 +25,7 @@ class ViewController: UIViewController {
         
         weatherCV.delegate = self
         weatherCV.dataSource = self
-        fetchWeatherData()
+        fetchAlomafireWeatherData()
     }
 
     // MARK: - Private Methods
@@ -46,7 +47,38 @@ class ViewController: UIViewController {
             }
             
         }.resume()
+    }
+    
+    func fetchAlomafireWeatherData() {
+        guard let url = URL(string: weatherUrl) else { return }
         
+        request(url).validate().responseJSON { dataResponse in
+            
+            switch dataResponse.result {
+            case .success(let value):
+                //print(value)
+                guard let jsonData = value as? Array<[String: Any]> else { return }
+                
+                for dictWeather in jsonData {
+                    let weather = Weather(date: dictWeather["date"] as? String,
+                                          tod: dictWeather["tod"] as? String,
+                                          temp: dictWeather["temp"] as? String,
+                                          wind: dictWeather["wind"] as? String,
+                                          cloud: dictWeather["cloud"] as? String)
+                    
+                    print(weather)
+                    self.weatherData?.append(weather)
+                    print(self.weatherData?.first?.date ?? "Какаятохеротень")
+                }
+                
+                DispatchQueue.main.async {
+                    self.weatherCV.reloadData()
+                    
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

@@ -11,8 +11,8 @@ import Foundation
 struct Weather: Decodable {
     
     // MARK: - Properties
-    private let date: String?
-    private let tod: String?
+    let date: String?
+    let tod: String?
     let temp: String?
     let wind: String?
     let cloud: String?
