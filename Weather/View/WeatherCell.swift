@@ -50,7 +50,7 @@ class WeatherCell:
             
             cell.timeOfDayLabel.text = weatherData?[index].getTimeOfDay()
             cell.temperatureLabel.text = weatherData?[index].temp
-            cell.windLabel.text = weatherData?[index].wind  ?? " "
+            cell.windLabel.text = "Ветер" + " " + (weatherData?[index].wind  ?? " ")
             cell.cloudLabel.text = weatherData?[index].cloud
             
             cell.layer.shadowRadius = 5
@@ -65,7 +65,7 @@ class WeatherCell:
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width / 1.4, height: 125)
+        return CGSize(width: 200, height: 125)
     }
     
 }

@@ -28,35 +28,19 @@ class ViewController: UIViewController {
         fetchAlomafireWeatherData()
     }
 
-    // MARK: - Private Methods
- 
-    private func fetchWeatherData() {
-        
-        guard let url = URL(string: weatherUrl) else { return }
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            
-            guard let data = data else { return }
-            do {
-                self.weatherData = try JSONDecoder().decode([Weather].self, from: data)
-            } catch let error {
-                print(error)
-            }
-            
-            DispatchQueue.main.async {
-                self.weatherCV.reloadData()
-            }
-            
-        }.resume()
-    }
+}
+
+// MARK: - JSON Parse
+extension ViewController {
     
-    func fetchAlomafireWeatherData() {
+    private func fetchAlomafireWeatherData() {
         guard let url = URL(string: weatherUrl) else { return }
         
         request(url).validate().responseJSON { dataResponse in
             
             switch dataResponse.result {
             case .success(let value):
-                //print(value)
+                
                 guard let jsonData = value as? Array<[String: Any]> else { return }
                 
                 for dictWeather in jsonData {
@@ -66,9 +50,7 @@ class ViewController: UIViewController {
                                           wind: dictWeather["wind"] as? String,
                                           cloud: dictWeather["cloud"] as? String)
                     
-                    print(weather)
                     self.weatherData?.append(weather)
-                    print(self.weatherData?.first?.date ?? "Какаятохеротень")
                 }
                 
                 DispatchQueue.main.async {
@@ -80,6 +62,7 @@ class ViewController: UIViewController {
             }
         }
     }
+    
 }
 
 // MARK: - Collection view data sourse and delegate
@@ -131,7 +114,7 @@ extension ViewController:
 // MARK: UICollectionViewDelegateFlowLayout
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 140)
+        return CGSize(width: UIScreen.main.bounds.width, height: 150)
     }
     
 }

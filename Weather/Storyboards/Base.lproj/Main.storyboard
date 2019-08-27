@@ -59,18 +59,18 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hc4-aj-5di">
-                                                                        <rect key="frame" x="53" y="5" width="94.5" height="27.5"/>
+                                                                        <rect key="frame" x="52" y="8" width="96" height="27.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tod" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baN-zz-opa">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="31.5" height="27.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="32.5" height="27.5"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <size key="shadowOffset" width="1" height="1"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IW9-Re-wKC">
-                                                                                <rect key="frame" x="41.5" y="0.0" width="53" height="27.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                                                                                <rect key="frame" x="42.5" y="0.0" width="53.5" height="27.5"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <size key="shadowOffset" width="1" height="1"/>
@@ -78,14 +78,14 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SlO-UZ-lQs">
-                                                                        <rect key="frame" x="81.5" y="52" width="37" height="21.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                                        <rect key="frame" x="79.5" y="50.5" width="41" height="24"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <size key="shadowOffset" width="1" height="1"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cloud" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYh-YU-irS">
-                                                                        <rect key="frame" x="10" y="98.5" width="180" height="21.5"/>
+                                                                        <rect key="frame" x="10" y="96.5" width="180" height="21.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -93,13 +93,13 @@
                                                                     </label>
                                                                 </subviews>
                                                             </view>
-                                                            <color key="backgroundColor" red="0.58075571059999997" green="0.81483358139999995" blue="0.94484215969999996" alpha="0.6973191352739726" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="hc4-aj-5di" firstAttribute="centerX" secondItem="Lb5-6I-Umk" secondAttribute="centerX" id="1XC-BQ-9bZ"/>
-                                                                <constraint firstAttribute="bottom" secondItem="bYh-YU-irS" secondAttribute="bottom" constant="5" id="I5e-JH-N3G"/>
+                                                                <constraint firstAttribute="bottom" secondItem="bYh-YU-irS" secondAttribute="bottom" constant="7" id="I5e-JH-N3G"/>
                                                                 <constraint firstAttribute="trailing" secondItem="bYh-YU-irS" secondAttribute="trailing" constant="10" id="Jgo-bd-7cR"/>
                                                                 <constraint firstItem="bYh-YU-irS" firstAttribute="leading" secondItem="Lb5-6I-Umk" secondAttribute="leading" constant="10" id="K5u-Wx-bJf"/>
-                                                                <constraint firstItem="hc4-aj-5di" firstAttribute="top" secondItem="Lb5-6I-Umk" secondAttribute="firstBaseline" constant="5" id="MSJ-kd-Yj1"/>
+                                                                <constraint firstItem="hc4-aj-5di" firstAttribute="top" secondItem="Lb5-6I-Umk" secondAttribute="firstBaseline" constant="8" id="MSJ-kd-Yj1"/>
                                                                 <constraint firstItem="SlO-UZ-lQs" firstAttribute="centerX" secondItem="Lb5-6I-Umk" secondAttribute="centerX" id="Ygz-0C-vnI"/>
                                                                 <constraint firstItem="SlO-UZ-lQs" firstAttribute="centerY" secondItem="Lb5-6I-Umk" secondAttribute="centerY" id="alL-YT-sU4"/>
                                                             </constraints>
@@ -141,8 +141,8 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uz-bc-HxJ">
-                                            <rect key="frame" x="164.5" y="-3.5" width="46" height="25"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <rect key="frame" x="164" y="-3.5" width="47.5" height="25"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <size key="shadowOffset" width="1" height="1"/>
