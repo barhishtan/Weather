@@ -99,7 +99,7 @@ extension ViewController:
 // MARK: UICollectionViewDelegateFlowLayout
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 125)
+        return CGSize(width: UIScreen.main.bounds.width, height: 140)
     }
     
 }

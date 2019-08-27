@@ -12,7 +12,7 @@ class WeatherCell:
     UICollectionViewCell,
     UICollectionViewDelegate,
     UICollectionViewDataSource,
-    UICollectionViewDelegateFlowLayout {
+    UICollectionViewDelegateFlowLayout{
     
     // MARK: - IB Outlets
     @IBOutlet var collectionInCell: UICollectionView!
@@ -50,8 +50,13 @@ class WeatherCell:
             
             cell.timeOfDayLabel.text = weatherData?[index].getTimeOfDay()
             cell.temperatureLabel.text = weatherData?[index].temp
-            cell.windLabel.text =  "Ветер" + " " + (weatherData?[index].wind  ?? " ")
+            cell.windLabel.text = weatherData?[index].wind  ?? " "
             cell.cloudLabel.text = weatherData?[index].cloud
+            
+            cell.layer.shadowRadius = 5
+            cell.layer.shadowOpacity = 0.3
+            cell.layer.shadowOffset = CGSize(width: 3, height: 3)
+            cell.clipsToBounds = false
             
             return cell
     }
@@ -60,7 +65,7 @@ class WeatherCell:
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width / 1.5, height: 125)
+        return CGSize(width: UIScreen.main.bounds.width / 1.4, height: 125)
     }
     
 }
